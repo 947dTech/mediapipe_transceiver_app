@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "download:model": "curl -L -o dist/models/holistic_landmarker.task https://storage.googleapis.com/mediapipe-models/holistic_landmarker/holistic_landmarker/float16/1/holistic_landmarker.task",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,6 +14,8 @@
     "@tauri-apps/cli": "^2.11.4"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "^1.0.1",
+    "copy-webpack-plugin": "^14.0.0",
     "webpack": "^5.110.3",
     "webpack-cli": "^7.2.3"
   }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Holistic Landmarker Web</title>
+  <style>
+    .container {
+        position: relative;
+    }
+    #webcam {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #output_canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+  </style>
+</head>
+<body>
+    <select id="cameraSelect"></select>
+    <p><a href="index.html">Back to menu</a></p>
+
+    <div class="container">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="output_canvas" width="1280" height="720"></canvas>
+    </div>
+
+  <script src="capture.bundle.js">
+  </script>
+</body>
+</html>

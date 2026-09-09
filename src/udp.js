@@ -7,7 +7,9 @@ init_button.addEventListener("click", (event) => {
     invoke("initialize_udp", {
         localAddr: "0.0.0.0:0",
         remoteAddr: document.getElementById("ipaddr").value,
-    }).then();
+    }).then((result) => {
+        window.location.href="capture.html";
+    });
 });
 
 send_button.addEventListener("click", (event) => {
