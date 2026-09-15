@@ -17,6 +17,9 @@ const canvasElement = document.getElementById('output_canvas');
 const ctx = canvasElement.getContext('2d');
 const drawingUtils = new DrawingUtils(ctx);
 
+// プライバシーモード
+const privacyMode = document.getElementById("privacy");
+
 // camera parameters
 const cameraWidth = 1280;
 const cameraHeight = 720;
@@ -91,6 +94,12 @@ async function startCamera(deviceId) {
 }
 
 async function main() {
+    // プライバシーモードではカメラ映像を隠す
+    if (privacyMode.checked) {
+        ctx.fillStyle = "#cccccc";
+        ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    }
+
     // 先に一度getUserMediaで許可を取っておく（label取得のため）
     await startCamera(null);
     await populateCameraList();
@@ -221,8 +230,14 @@ async function main() {
             }).then();
 
             // 描画は公式サンプルを参照
-            // https://github.com/google-ai-edge/mediapipe-samples-web/blob/main/src/tasks/holistic-landmarker.ts#L61
-            ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            // https://github.com/google-ai-edge/mediapipe-samples-web/blob/main/src/tasks/holistic-landmarker.ts#L61       
+            // プライバシーモードではカメラ映像を隠す
+            if (privacyMode.checked) {
+                ctx.fillStyle = "#cccccc";
+                ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+            } else {
+                ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            }
 
             // Face Landmarks
             if (result.faceLandmarks && result.faceLandmarks.length > 0) {
